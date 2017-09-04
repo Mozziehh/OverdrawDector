@@ -10,8 +10,39 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="overdector.com.overdrawdector.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/overdraw_btn"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="过度绘制探测器"/>
+
+    <TextView
+        android:id="@+id/overdraw_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overdraw_btn"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/overdraw_descp"/>
+
+    <TextView
+        android:id="@+id/overdraw_result_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="探测结果："
+        android:layout_below="@+id/overdraw_desc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/overdraw_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overdraw_result_desc"/>
+    <ListView
+        android:id="@+id/overdraw_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/overdraw_result"/>
 </RelativeLayout>
