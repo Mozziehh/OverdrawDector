@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OverdrawDector</string>
+    <string name="app_name">过度绘制探测器</string>
     <string name="overdraw_descp">过度绘制的使用方法：
         点击上方过度绘制按钮后，将需要检测的过度绘制图片丢进去，支持多选，完成后会将结果输出到
         屏幕上，同时，输出到指定的文件中</string>
