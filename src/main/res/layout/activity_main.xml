@@ -15,12 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="过度绘制探测器"/>
-
+    <Button
+        android:id="@+id/overdraw_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/overdraw_btn"
+        android:text="设置"/>
     <TextView
         android:id="@+id/overdraw_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/overdraw_btn"
+        android:layout_below="@id/overdraw_setting"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="@string/overdraw_descp"/>

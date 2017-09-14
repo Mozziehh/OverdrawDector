@@ -11,21 +11,24 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import overdector.com.bean.RGBbean;
+import overdector.com.data.ColorAdapter;
 
 /**
  * Created by mozzie on 17/9/1.
  */
 
-public class ImageViewActivity extends Activity implements View.OnTouchListener, View.OnLongClickListener, CompoundButton.OnCheckedChangeListener{
+public class ImageViewActivity extends Activity implements View.OnTouchListener, View.OnLongClickListener, CompoundButton.OnCheckedChangeListener, AdapterView.OnItemLongClickListener{
 
     private ImageView mEditImg;
     Bitmap bitmap = null;
@@ -34,6 +37,8 @@ public class ImageViewActivity extends Activity implements View.OnTouchListener,
     private float mCurrentX, mCurrentY;
     private int r,g,b;
     private ArrayList<RGBbean> mRGBbean;
+    private ListView mColorListView;
+    private ColorAdapter mColorAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +69,11 @@ public class ImageViewActivity extends Activity implements View.OnTouchListener,
                 finish();
             }
         });
+
+        mColorListView = (ListView) findViewById(R.id.overdraw_listview);
+        mColorAdapter = new ColorAdapter(getBaseContext());
+        mColorListView.setAdapter(mColorAdapter);
+        mColorListView.setOnItemLongClickListener(this);
     }
 
     /**
@@ -155,7 +165,14 @@ public class ImageViewActivity extends Activity implements View.OnTouchListener,
             }
 
             Log.d("huhao-onCheckedChanged", "RGB = " + r + "," + g + "," + b) ;
+            notifyListDataChange();
+
         }
+    }
+
+    private void notifyListDataChange() {
+        mColorAdapter.setRGBBean(mRGBbean);
+        mColorAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -166,5 +183,27 @@ public class ImageViewActivity extends Activity implements View.OnTouchListener,
         }else{
             finish();
         }
+    }
+
+    /**
+     * Callback method to be invoked when an item in this view has been
+     * clicked and held.
+     * <p>
+     * Implementers can call getItemAtPosition(position) if they need to access
+     * the data associated with the selected item.
+     *
+     * @param parent   The AbsListView where the click happened
+     * @param view     The view within the AbsListView that was clicked
+     * @param position The position of the view in the list
+     * @param id       The row id of the item that was clicked
+     * @return true if the callback consumed the long click, false otherwise
+     */
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        if (mRGBbean != null && mRGBbean.size() > position){
+            mRGBbean.remove(position);
+            notifyListDataChange();
+        }
+        return false;
     }
 }

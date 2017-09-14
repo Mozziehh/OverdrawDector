@@ -21,4 +21,11 @@
         android:checked="false"
         android:visibility="invisible"
         android:background="#FFFFFF"/>
+    <ListView
+        android:id="@+id/overdraw_listview"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/overdraw_edit_ensure">
+    </ListView>
 </RelativeLayout>

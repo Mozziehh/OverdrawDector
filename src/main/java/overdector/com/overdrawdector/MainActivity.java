@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +34,7 @@ import rx.Subscriber;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Button mOverdrawBtn;
+    private Button mOverdrawBtn, mOverdrawSetting;
     private TextView mOverdrawRresult;
     private ListView mColorList;
     private MyAdapter myAdapter;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mOverdrawBtn = (Button) findViewById(R.id.overdraw_btn);
         mOverdrawRresult = (TextView) findViewById(R.id.overdraw_result);
         mOverdrawBtn.setOnClickListener(this);
+        mOverdrawSetting = (Button) findViewById(R.id.overdraw_setting);
+        mOverdrawSetting.setOnClickListener(this);
         mColorList = (ListView) findViewById(R.id.overdraw_listview);
         myAdapter = new MyAdapter();
         mColorList.setAdapter(myAdapter);
@@ -84,7 +87,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.overdraw_btn:
                 pickPhoto();
                 break;
+            case R.id.overdraw_setting:
+                gotoSetting();
+                break;
         }
+    }
+
+    /**
+     * 跳转到开发者选项页面
+     */
+    private void gotoSetting() {
+        Intent intent =  new Intent(Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
+        startActivity(intent);
     }
 
     /**
